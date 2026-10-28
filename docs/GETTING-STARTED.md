@@ -1,4 +1,4 @@
-# Getting started — no coding required
+# Getting started: no coding required
 
 This guide creates a new portfolio site. If replacing an existing theme, first back up the **database and uploads as well as theme files**. A theme ZIP does not contain your writing or settings. Prefer staging before changing a live site.
 
