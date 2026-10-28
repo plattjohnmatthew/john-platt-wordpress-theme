@@ -1,4 +1,4 @@
-# John Platt — editorial WordPress theme
+# John Platt editorial WordPress theme
 
 A free, open-source portfolio theme by John Platt: oversized condensed headings, warm paper colours, strong grid rules, native Writing posts and immersive Project previews.
 
