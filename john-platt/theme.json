@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "settings": {
+    "typography": {
+      "fontSizes": [
+        {
+          "slug": "title",
+          "size": "clamp(3rem, 7vw, 8rem)",
+          "name": "title"
+        },
+        {
+          "slug": "h1",
+          "size": "clamp(2.75rem, 5.3vw, 7.5rem)",
+          "name": "H1 size"
+        },
+        {
+          "slug": "h2",
+          "size": "clamp(2rem, 3.4vw, 4.5rem)",
+          "name": "H2 size"
+        },
+        {
+          "slug": "h3",
+          "size": "clamp(1.25rem, 1.8vw, 2rem)",
+          "name": "H3 size"
+        },
+        {
+          "slug": "h4",
+          "size": "clamp(1.125rem, 1.25vw, 1.5rem)",
+          "name": "H4 size"
+        },
+        {
+          "slug": "h5",
+          "size": "clamp(1rem, 1.1vw, 1.125rem)",
+          "name": "H5 size"
+        },
+        {
+          "slug": "h6",
+          "size": "1rem",
+          "name": "H6 size"
+        },
+        {
+          "slug": "body",
+          "size": "clamp(1rem, .95rem + .2vw, 1.125rem)",
+          "name": "body"
+        },
+        {
+          "slug": "lead",
+          "size": "clamp(1.25rem, 1.6vw, 2rem)",
+          "name": "lead"
+        },
+        {
+          "slug": "small",
+          "size": ".875rem",
+          "name": "small"
+        },
+        {
+          "slug": "navigation",
+          "size": "clamp(1.5rem, 2.2vw, 3rem)",
+          "name": "navigation"
+        }
+      ]
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontFamilies": [
+            {
+              "slug": "normal",
+              "name": "Normal (Arial)",
+              "fontFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif"
+            },
+            {
+              "slug": "impact",
+              "name": "Impact",
+              "fontFamily": "Impact, Haettenschweiler, \"Arial Narrow\", sans-serif"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
