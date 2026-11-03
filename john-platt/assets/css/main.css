@@ -583,14 +583,16 @@ main.writing-page, main.article-page { padding: 0; }
 .article-featured { max-width: 70rem; margin: 0 auto; padding: var(--cell-padding); }
 .article-featured__image { width: 100%; max-height: 38rem; object-fit: contain; }
 /* The title defines row height; image and centered date share the left cell. */
-.writing-article .article-header__date { margin: 1rem 0 0; text-align: center; }
-.writing-article .article-header__image {
+.writing-article .article-header__date,
+.project-article--article-image .project-header__archive { margin: 1rem 0 0; text-align: center; }
+.project-header__archive { margin: 0; }
+:is(.writing-article, .project-article--article-image) .article-header__image {
 	width: 100%;
 	max-width: 100%;
 	margin: 0 auto;
 	padding: 0;
 }
-.writing-article .article-header__image .article-featured__image {
+:is(.writing-article, .project-article--article-image) .article-header__image .article-featured__image {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -598,28 +600,38 @@ main.writing-page, main.article-page { padding: 0; }
 	margin-inline: auto;
 	object-fit: contain;
 }
-.writing-article .article-header__image figcaption { margin-top: .75rem; text-align: center; }
-.writing-article .article-header__visual { min-height: 80px; }
+:is(.writing-article, .project-article--article-image) .article-header__image figcaption { margin-top: .75rem; text-align: center; }
+:is(.writing-article, .project-article--article-image) .article-header__visual { min-height: 80px; }
 @media (min-width: 64rem) {
-	.writing-article .article-header__meta { display: flex; flex-direction: column; padding: calc(var(--cell-padding) * .6); }
-	.writing-article .article-header__image {
+	:is(.writing-article, .project-article--article-image) .article-header__meta { display: flex; flex-direction: column; padding: calc(var(--cell-padding) * .6); }
+	:is(.writing-article, .project-article--article-image) .article-header__image {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
 		min-height: 0;
 	}
-	.writing-article .article-header__visual {
+	:is(.writing-article, .project-article--article-image) .article-header__visual {
 		position: relative;
 		flex: 1;
 	}
 	/* Intrinsic image height cannot enlarge the title-driven grid row. */
-	.writing-article .article-header__image .article-featured__image {
+	:is(.writing-article, .project-article--article-image) .article-header__image .article-featured__image {
 		position: absolute;
 		inset: 0;
 		height: 100%;
 		max-height: none;
 	}
 }
+/* Use the Website Launch cover proportions across Project headers. */
+.project-article--article-image .article-header__image { max-width: 28rem; flex: none; }
+.project-article--article-image .article-header__visual { aspect-ratio: 1024 / 819; min-height: 0; flex: none; }
+.project-article--article-image .article-header__image .article-featured__image {
+	position: static;
+	height: 100%;
+	max-height: none;
+	object-fit: contain;
+}
+.project-article--article-image .article-header__content { align-self: center; }
 .article-body { width: min(100%, calc(70ch + 2 * var(--cell-padding))); margin-inline: auto; padding: clamp(1.5rem, 4vw, 4rem) var(--cell-padding); font-size: var(--type-body); line-height: 1.7; }
 /* Writing has a 50% wider reading measure; Projects retain the shared default. */
 .writing-article .article-body { width: min(100%, calc(105ch + 2 * var(--cell-padding))); }
@@ -886,8 +898,34 @@ main.projects-page { padding: 0; }
 }
 
 /* Case studies retain readable text while editor-aligned media may be wider. */
-.project-page .article-body { width: min(100%, 70rem); }
-.project-page .article-body > * { max-width: 70ch; margin-inline: auto; }
+.project-article .article-body {
+	width: min(100%, calc(52rem + 2 * var(--cell-padding)));
+}
+.project-article .article-body { overflow-wrap: anywhere; }
+/* Standalone image frames should follow the rendered image and caption. */
+.project-article .article-body > .wp-block-image,
+.project-article .article-body > .wp-block-image > :is(a, picture, .components-resizable-box__container) {
+	height: auto !important;
+	min-height: 0 !important;
+	aspect-ratio: auto !important;
+}
+/* Saved block dimensions can otherwise force a distorted image box. */
+.project-article .article-body > .wp-block-image img,
+.project-article .article-body > p > img:only-child,
+.project-article .article-body > p > a:only-child > img:only-child {
+	max-width: 100%;
+	height: auto !important;
+	contain-intrinsic-size: none;
+	object-fit: contain;
+}
+.project-article .article-body > .wp-block-image:not(.is-resized, .alignleft, .alignright),
+.project-article .article-body > p:has(> img:only-child, > a:only-child > img:only-child) {
+	margin-block: 1.5em;
+}
+.project-page .article-body img { max-width: 100%; }
+.project-page .article-body img:not(.wp-block-cover__image-background, .wp-block-media-text__media img, .wp-block-gallery.is-cropped img) {
+	height: auto !important;
+}
 .project-page .article-body > .alignwide, .project-page .article-body > .alignfull { width: 100%; max-width: 100%; }
 .project-page .article-body .wp-block-column { min-width: 0; }
 .project-page .article-body .wp-block-gallery img { max-width: 100%; }
